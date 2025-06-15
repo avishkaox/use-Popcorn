@@ -7,16 +7,17 @@ function ListBox(props) {
   
   return (
     <div className="box">
+      {!props.isLoading?<>
       <button
         className="btn-toggle"
         onClick={() => setIsOpen1((open) => !open)}
       >
         {isOpen1 ? "–" : "+"}
       </button>
-      {isOpen1 && (
-        <ul className="list">
+      {isOpen1 ? <ul className="list list-movies">
           {props.movies.map((item, index) => (
             <Movie
+              selectedId={props.selectedId}
               key={index}
               imdbID={item.imdbID}
               Title={item.Title}
@@ -24,8 +25,7 @@ function ListBox(props) {
               Poster={item.Poster}
             />
           ))}
-        </ul>
-      )}
+        </ul> : ''}</>:<div className="loader"><p>{props.error ? props.error : 'Loading'}</p></div>}
     </div>
   );
 }

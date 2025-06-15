@@ -1,6 +1,6 @@
 function Movie(props) {
   return (
-    <li key={props.imdbID}>
+    <li onClick={()=>props.selectedId(props.imdbID)} key={props.imdbID}>
       <img src={props.Poster} alt={`${props.Title} poster`} />
       <h3>{props.Title}</h3>
       <div>

@@ -1,16 +1,14 @@
-import { useState } from "react"
-
-function Search(){
-    
-  const [query, setQuery] = useState("");
-    return(
-          <input
+function Search(props) {
+  return (
+    <div>
+      <input
         className="search"
         type="text"
         placeholder="Search movies..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        value={props.value}
+        onChange={(e) => props.onChange(e.target.value)}
       />
-    )
+    </div>
+  );
 }
-export default Search
+export default Search;

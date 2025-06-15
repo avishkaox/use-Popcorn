@@ -1,9 +1,9 @@
 
 
-function Main({element}) {
+function Main({children}) {
   return (
     <main className="main">
-      {element}
+      {children}
     </main>
   );
 }
