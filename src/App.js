@@ -37,12 +37,17 @@ const KEY = "8b2740ef";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState(tempWatchedData);
+  const [watched, setWatched] = useState([]);
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   const [slectedMovie, setSelectedMovie] = useState({});
+
+  function updateWatched() {
+    setWatched((watched) => [...watched, slectedMovie]);
+    console.log(watched);
+  }
 
   useEffect(
     function () {
@@ -112,14 +117,15 @@ export default function App() {
             isLoading={isLoading}
             movies={movies}
           />
+
           <WatchedBox>
             {selectedId ? (
               <>
-                <p>{selectedId}</p>
-                <MovieDetails 
-                Poster={slectedMovie.Poster}
-                Title={slectedMovie.Title}
-                Plot={slectedMovie.Plot}
+                <MovieDetails
+                  Poster={slectedMovie.Poster}
+                  Title={slectedMovie.Title}
+                  Plot={slectedMovie.Plot}
+                  updateWatched={updateWatched}
                 />
                 <button onClick={() => setSelectedId(null)}>Go Back</button>
               </>
