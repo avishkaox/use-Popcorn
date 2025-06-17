@@ -16,8 +16,8 @@ const textStyles = {
   margin: "0",
 };
 
-function StarRating({ maxRating = 5 }) {
-  const [rating, setRating] = useState(0);
+function StarRating({ maxRating = 5 , rating , setRating }) {
+  
   const [tempRating, setTempRating] = useState(0);
 
   return (

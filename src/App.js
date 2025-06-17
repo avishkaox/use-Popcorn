@@ -9,6 +9,7 @@ import NumResult from "./NumResult";
 import WatchedSummary from "./WatchedSummary";
 import WatchedMoviesList from "./WatchedMoviesList";
 import MovieDetails from "./MovieDetails";
+import StarRating from "./StarRating";
 
 const tempWatchedData = [
   {
@@ -43,10 +44,16 @@ export default function App() {
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   const [slectedMovie, setSelectedMovie] = useState({});
+  const [rating, setRating] = useState(0);
 
   function updateWatched() {
     setWatched((watched) => [...watched, slectedMovie]);
     console.log(watched);
+    setSelectedId(null);
+  }
+
+  function handleDeleteWatched(id) {
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
 
   useEffect(
@@ -102,6 +109,13 @@ export default function App() {
     [selectedId]
   );
 
+  useEffect(
+    function () {
+      document.title = `Movie:${slectedMovie.Title ??'UsePopcorn' }`;
+    },
+    [slectedMovie]
+  );
+
   return (
     <>
       <NavBar>
@@ -126,13 +140,23 @@ export default function App() {
                   Title={slectedMovie.Title}
                   Plot={slectedMovie.Plot}
                   updateWatched={updateWatched}
+                  element={
+                    <StarRating
+                      rating={rating}
+                      setRating={() => setRating()}
+                      maxRating="10"
+                    />
+                  }
                 />
                 <button onClick={() => setSelectedId(null)}>Go Back</button>
               </>
             ) : (
               <>
                 <WatchedSummary watched={watched} />
-                <WatchedMoviesList watched={watched} />
+                <WatchedMoviesList
+                  onClick={handleDeleteWatched}
+                  watched={watched}
+                />
               </>
             )}
           </WatchedBox>

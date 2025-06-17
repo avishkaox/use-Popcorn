@@ -11,6 +11,8 @@ function WatchedMoviesList(props) {
         imdbRating={item.imdbRating}
         userRating={item.userRating}
         runtime={item.runtime}
+        onClick={props.onClick}
+        imdbID={item.imdbID}
         />
       ))}
     </ul>

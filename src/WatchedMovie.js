@@ -17,6 +17,7 @@ function WatchedMovie(props) {
           <span>{props.runtime} min</span>
         </p>
       </div>
+      <button onClick={()=>props.onClick(props.imdbID)} >x</button>
     </li>
   );
 }

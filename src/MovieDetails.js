@@ -1,4 +1,3 @@
-import StarRating from "./StarRating";
 
 function MovieDetails(props) {
   return (
@@ -8,7 +7,7 @@ function MovieDetails(props) {
         src={props.Poster}
         alt={`${props.Title} poster`}
       />
-      <StarRating maxRating={10} />
+      {props.element}
       <h3>{props.Title}</h3>
       <div>
         <p>{props.Plot}</p>
@@ -17,7 +16,7 @@ function MovieDetails(props) {
           <span>{props.Year}</span>
         </p>
       </div>
-      <button onClick={()=>props.updateWatched()}>I have Watched this</button>
+      <button onClick={()=>props.updateWatched()}>Add to list</button>
     </div>
   );
 }
